@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Flower Shop</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #fff8fb;
+    color: #333;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 18px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 3px 15px rgba(0,0,0,.1);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #e84393;
+}
+
+.navbar a {
+    margin: 0 15px;
+    color: #555;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navbar a:hover {
+    color: #e84393;
+}
+
+.icons {
+    display: flex;
+    gap: 18px;
+}
+
+.icons a {
+    color: #333;
+    font-size: 22px;
+    text-decoration: none;
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: #e84393;
+    color: white;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section {
+    padding: 80px 7%;
+}
+
+.home {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background:
+    linear-gradient(rgba(255,255,255,.5),rgba(255,255,255,.5)),
+    url("https://images.pexels.com/photos/56866/garden-rose-red-pink-56866.jpeg")
+    center/cover;
+}
+
+.home-content {
+    max-width: 600px;
+}
+
+.home h1 {
+    font-size: 60px;
+}
+
+.home span {
+    color: #e84393;
+    font-size: 30px;
+}
+
+.home p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin: 20px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #333;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: #e84393;
+}
+
+.heading {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+.heading span {
+    color: #e84393;
+}
+
+/* ABOUT */
+
+.about-row {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.video-container {
+    flex: 1;
+    position: relative;
+}
+
+.video-container video {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.best-seller {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(255,255,255,.96);
+    padding: 18px 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,.25);
+}
+
+.best-seller img {
+    width: 85px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #e84393;
+}
+
+.best-seller h3 {
+    margin-top: 10px;
+    color: #e84393;
+}
+
+.about-content {
+    flex: 1;
+}
+
+.about-content h2 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.about-content p {
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+/* PRODUCTS */
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 25px;
+}
+
+.card1 {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(232,67,147,.15);
+    transition: .3s;
+}
+
+.card1:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(232,67,147,.25);
+}
+
+.card1 img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card1 h3 {
+    padding: 15px;
+    font-size: 20px;
+}
+
+.container-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px 20px;
+}
+
+.price {
+    color: #e84393;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.product-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.product-icons i {
+    width: 40px;
+    height: 40px;
+    background: #fff0f7;
+    color: #e84393;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.product-icons i:hover {
+    background: #e84393;
+    color: white;
+}
+
+/* CART */
+
+.cart-box {
+    position: fixed;
+    top: 80px;
+    right: 30px;
+    width: 380px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.25);
+    z-index: 2000;
+    display: none;
+}
+
+.cart-box.active {
+    display: block;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+
+.cart-header h2 {
+    color: #e84393;
+}
+
+.cart-header i {
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item button {
+    background: #e84393;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart-total {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    background: #e84393;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+/* CHECKOUT */
+
+.checkout-box {
+    display: none;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.checkout-box.active {
+    display: block;
+}
+
+.checkout-box input,
+.checkout-box select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.place-order {
+    width: 100%;
+    padding: 13px;
+    background: #e84393;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* FEATURES */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    background: #eee;
+}
+
+.feature {
+    background: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.feature i {
+    font-size: 35px;
+    color: #e84393;
+    margin-bottom: 10px;
+}
+
+/* CONTACT */
+
+.contact-box {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.1);
+}
+
+.contact-box input,
+.contact-box textarea {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.contact-box button {
+    background: #e84393;
+    color: white;
+    border: none;
+    padding: 13px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+/* FOOTER */
+
+footer {
+    background: #ffb6c1;
+    padding: 30px;
+    text-align: center;
+}
+
+footer p {
+    margin: 8px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px) {
+
+    .navbar {
+        display: none;
+    }
+
+    .container {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .features {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .about-row {
+        flex-direction: column;
+    }
+}
+
+@media(max-width:600px) {
+
+    .home h1 {
+        font-size: 40px;
+    }
+
+    .home span {
+        font-size: 22px;
+    }
+
+    .container,
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-box {
+        width: calc(100% - 20px);
+        right: 10px;
+        top: 70px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<a href="#" class="logo">Flower<span>.</span></a>
+
+<nav class="navbar">
+<a href="#Home">Home</a>
+<a href="#About">About</a>
+<a href="#Products">Products</a>
+<a href="#Contact">Contact</a>
+</nav>
+
+<div class="icons">
+
+<a href="#"><i class="fas fa-heart"></i></a>
+
+<a href="#" id="cart-icon">
+<i class="fas fa-shopping-cart"></i>
+<span class="cart-count">0</span>
+</a>
+
+<a href="#"><i class="fas fa-user"></i></a>
+
+</div>
+
+</header>
+
+
+<!-- HOME -->
+
+<section class="home" id="Home">
+
+<div class="home-content">
+
+<h1>Flower Store</h1>
+
+<span>Natural and Beautiful Flowers</span>
+
+<p>
+Welcome to our flower shop, where every beautiful bloom is carefully
+selected and arranged to bring love, happiness, and unforgettable moments
+to every special occasion.
+</p>
+
+<a href="#Products" class="btn">Order Now</a>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="About">
+
+<h1 class="heading">
+<span>About</span> Us
+</h1>
+
+<div class="about-row">
+
+<div class="video-container">
+
+<video
+src="images/6014859_Flower_Garden_1920x1080.mp4"
+loop autoplay muted>
+</video>
+
+<div class="best-seller">
+
+<img
+src="https://images.pexels.com/photos/56866/garden-rose-red-pink-56866.jpeg?auto=compress&cs=tinysrgb&w=300"
+alt="Red Rose">
+
+<h3>🌹 Best Flower Sellers 🌹</h3>
+
+</div>
+
+</div>
+
+<div class="about-content">
+
+<h2>Why Choose Us?</h2>
+
+<p>
+We provide fresh, beautiful, and carefully arranged flowers for every
+special occasion. Our bouquets are made with love and attention to detail,
+using high-quality flowers to make your moments more memorable.
+With affordable prices, reliable delivery, and friendly service,
+we are here to make every order special.
+</p>
+
+<br>
+
+<a href="#Products" class="btn">Learn More</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="features">
+
+<div class="feature">
+<i class="fas fa-truck"></i>
+<h3>Free Delivery</h3>
+<p>On all orders</p>
+</div>
+
+<div class="feature">
+<i class="fas fa-rotate-left"></i>
+<h3>10 Day Returns</h3>
+<p>Money back guarantee</p>
+</div>
+
+<div class="feature">
+<i class="fas fa-tag"></i>
+<h3>Special Discounts</h3>
+<p>Great prices every day</p>
+</div>
+
+<div class="feature">
+<i class="fas fa-lock"></i>
+<h3>Secure Payment</h3>
+<p>100% secure checkout</p>
+</div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section id="Products">
+
+<h1 class="heading">
+Latest <span>Products</span>
+</h1>
+
+<div class="container">
+
+
+<div class="card1">
+
+<img src="https://images.pexels.com/photos/32300948/pexels-photo-32300948.jpeg?auto=compress&cs=tinysrgb&w=600">
+
+<h3>Sunflower Bouquet</h3>
+
+<div class="container-price">
+
+<div class="price">$25</div>
+
+<div class="product-icons">
+<i class="fas fa-shopping-cart add-to-cart"></i>
+<i class="fas fa-heart"></i>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card1">
+
+<img src="https://images.pexels.com/photos/15290943/pexels-photo-15290943.jpeg?auto=compress&cs=tinysrgb&w=600">
+
+<h3>Colorful Rose Bouquet</h3>
+
+<div class="container-price">
+
+<div class="price">$20</div>
+
+<div class="product-icons">
+<i class="fas fa-shopping-cart add-to-cart"></i>
+<i class="fas fa-heart"></i>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card1">
+
+<img src="https://images.pexels.com/photos/20744187/pexels-photo-20744187.jpeg?auto=compress&cs=tinysrgb&w=600">
+
+<h3>Pink & White Bouquet</h3>
+
+<div class="container-price">
+
+<div class="price">$35</div>
+
+<div class="product-icons">
+<i class="fas fa-shopping-cart add-to-cart"></i>
+<i class="fas fa-heart"></i>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card1">
+
+<img src="https://images.pexels.com/photos/37423752/pexels-photo-37423752.jpeg?auto=compress&cs=tinysrgb&w=600">
+
+<h3>Mixed Bouquet</h3>
+
+<div class="container-price">
+
+<div class="price">$28</div>
+
+<div class="product-icons">
+<i class="fas fa-shopping-cart add-to-cart"></i>
+<i class="fas fa-heart"></i>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card1">
+
+<img src="https://images.pexels.com/photos/37523653/pexels-photo-37523653.jpeg?auto=compress&cs=tinysrgb&w=600">
+
+<h3>Pink Rose Bouquet</h3>
+
+<div class="container-price">
+
+<div class="price">$25</div>
+
+<div class="product-icons">
+<i class="fas fa-shopping-cart add-to-cart"></i>
+<i class="fas fa-heart"></i>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card1">
+
+<img src="https://images.pexels.com/photos/667320/pexels-photo-667320.jpeg?auto=compress&cs=tinysrgb&w=600">
+
+<h3>White & Yellow Bouquet</h3>
+
+<div class="container-price">
+
+<div class="price">$25</div>
+
+<div class="product-icons">
+<i class="fas fa-shopping-cart add-to-cart"></i>
+<i class="fas fa-heart"></i>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card1">
+
+<img src="https://images.pexels.com/photos/36147881/pexels-photo-36147881.jpeg?auto=compress&cs=tinysrgb&w=600">
+
+<h3>Red Rose Bouquet</h3>
+
+<div class="container-price">
+
+<div class="price">$30</div>
+
+<div class="product-icons">
+<i class="fas fa-shopping-cart add-to-cart"></i>
+<i class="fas fa-heart"></i>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card1">
+
+<img src="https://images.pexels.com/photos/34474071/pexels-photo-34474071.jpeg?auto=compress&cs=tinysrgb&w=600">
+
+<h3>Lily Bouquet</h3>
+
+<div class="container-price">
+
+<div class="price">$30</div>
+
+<div class="product-icons">
+<i class="fas fa-shopping-cart add-to-cart"></i>
+<i class="fas fa-heart"></i>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CART -->
+
+<div class="cart-box" id="cart-box">
+
+<div class="cart-header">
+
+<h2>Your Cart</h2>
+
+<i class="fas fa-times" id="close-cart"></i>
+
+</div>
+
+<div id="cart-items">
+<p>Your cart is empty.</p>
+</div>
+
+<div class="cart-total">
+Total: $<span id="cart-total">0</span>
+</div>
+
+<button class="checkout-btn" id="checkout-btn">
+Checkout / Place Order
+</button>
+
+
+<!-- CHECKOUT -->
+
+<div class="checkout-box" id="checkout-box">
+
+<h2>Place Your Order</h2>
+
+<input
+type="text"
+id="customer-name"
+placeholder="Your Name">
+
+<input
+type="tel"
+id="customer-phone"
+placeholder="Phone Number">
+
+<input
+type="text"
+id="customer-address"
+placeholder="Delivery Address">
+
+<select id="payment-method">
+
+<option>Cash on Delivery</option>
+<option>ABA</option>
+<option>ACLEDA</option>
+
+</select>
+
+<button class="place-order" id="place-order-btn">
+Place Order
+</button>
+
+</div>
+
+</div>
+
+
+<!-- CONTACT -->
+
+<section id="Contact">
+
+<h1 class="heading">
+Contact <span>Us</span>
+</h1>
+
+<div class="contact-box">
+
+<input type="text" placeholder="First Name">
+
+<input type="text" placeholder="Last Name">
+
+<input type="tel" placeholder="Phone Number">
+
+<input type="email" placeholder="Email">
+
+<textarea rows="5" placeholder="Your Message"></textarea>
+
+<button>Send Message</button>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<h2>Flower Shop 🌸</h2>
+
+<p>📍 Terk Tla, Phnom Penh</p>
+
+<p>📞 09640384</p>
+
+<p>✉️ user23@gmail.com</p>
+
+<p>© 2025 Flower Shop. All Rights Reserved.</p>
+
+</footer>
+
+
+<script>
+
+let cart = [];
+
+/* ADD TO CART */
+
+document.querySelectorAll(".add-to-cart").forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        let card = button.closest(".card1");
+
+        let name = card.querySelector("h3").textContent;
+
+        let price = parseFloat(
+            card.querySelector(".price").textContent.replace("$","")
+        );
+
+        cart.push({
+            name: name,
+            price: price
+        });
+
+        updateCart();
+
+        document.getElementById("cart-box").classList.add("active");
+
+    });
+
+});
+
+
+/* UPDATE CART */
+
+function updateCart() {
+
+    let cartItems = document.getElementById("cart-items");
+
+    let cartTotal = document.getElementById("cart-total");
+
+    let cartCount = document.querySelector(".cart-count");
+
+    cartItems.innerHTML = "";
+
+    let total = 0;
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML = "<p>Your cart is empty.</p>";
+
+    }
+
+    cart.forEach(function(item,index) {
+
+        total += item.price;
+
+        let div = document.createElement("div");
+
+        div.className = "cart-item";
+
+        div.innerHTML = `
+            <div>
+                <strong>${item.name}</strong><br>
+                $${item.price}
+            </div>
+
+            <button onclick="removeItem(${index})">
+                Remove
+            </button>
+        `;
+
+        cartItems.appendChild(div);
+
+    });
+
+    cartTotal.textContent = total.toFixed(2);
+
+    cartCount.textContent = cart.length;
+
+}
+
+
+/* REMOVE */
+
+function removeItem(index) {
+
+    cart.splice(index,1);
+
+    updateCart();
+
+}
+
+
+/* OPEN CART */
+
+document.getElementById("cart-icon").addEventListener("click",function(e) {
+
+    e.preventDefault();
+
+    document.getElementById("cart-box").classList.add("active");
+
+});
+
+
+/* CLOSE CART */
+
+document.getElementById("close-cart").addEventListener("click",function() {
+
+    document.getElementById("cart-box").classList.remove("active");
+
+});
+
+
+/* CHECKOUT */
+
+document.getElementById("checkout-btn").addEventListener("click",function() {
+
+    if(cart.length === 0) {
+
+        alert("Your cart is empty!");
+
+        return;
+    }
+
+    document
+    .getElementById("checkout-box")
+    .classList.add("active");
+
+});
+
+
+/* PLACE ORDER */
+
+document.getElementById("place-order-btn").addEventListener("click",function() {
+
+    let name =
+    document.getElementById("customer-name").value.trim();
+
+    let phone =
+    document.getElementById("customer-phone").value.trim();
+
+    let address =
+    document.getElementById("customer-address").value.trim();
+
+    let payment =
+    document.getElementById("payment-method").value;
+
+    if(name === "" || phone === "" || address === "") {
+
+        alert("Please fill in all customer information.");
+
+        return;
+    }
+
+    let total =
+    document.getElementById("cart-total").textContent;
+
+    alert(
+        "🎉 ORDER SUCCESSFUL!\n\n" +
+        "Thank you, " + name + "!\n\n" +
+        "Total: $" + total + "\n" +
+        "Payment: " + payment + "\n" +
+        "Delivery Address: " + address
+    );
+
+    cart = [];
+
+    updateCart();
+
+    document
+    .getElementById("checkout-box")
+    .classList.remove("active");
+
+});
+
+
+</script>
+
+</body>
+</html>
